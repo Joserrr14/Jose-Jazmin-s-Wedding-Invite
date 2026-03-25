@@ -7,18 +7,14 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section id="loader" class="screen">
-    <div class="center-box">
-      <p class="small">A special invitation for you</p>
-      <button id="openIntro" class="btn" type="button">Open</button>
-    </div>
-  </section>
-
-  <section id="envelopeSection" class="screen hidden">
+  <!-- First screen: envelope only -->
+  <section id="envelopeSection" class="screen">
     <div class="envelope-wrap">
       <div id="envelope" class="envelope">
         <div class="flap"></div>
-        <div class="seal">J&amp;J</div>
+        <button id="sealButton" class="seal" type="button" aria-label="Open invitation">
+          J&amp;J
+        </button>
 
         <div class="letter">
           <h1>Jose &amp; Jazmin</h1>
@@ -30,6 +26,7 @@
     </div>
   </section>
 
+  <!-- Full invite -->
   <main id="invite" class="hidden">
     <header class="hero">
       <div class="overlay">
