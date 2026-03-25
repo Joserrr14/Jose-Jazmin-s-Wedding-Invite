@@ -1,44 +1,30 @@
-const loader = document.getElementById("loader");
 const envelopeSection = document.getElementById("envelopeSection");
 const invite = document.getElementById("invite");
-const openIntro = document.getElementById("openIntro");
+const sealButton = document.getElementById("sealButton");
 const envelope = document.getElementById("envelope");
 const countdown = document.getElementById("countdown");
 const rsvpForm = document.getElementById("rsvpForm");
 const rsvpMessage = document.getElementById("rsvpMessage");
 
-function showLoader() {
-  loader.classList.remove("hidden");
-  envelopeSection.classList.add("hidden");
-  invite.classList.add("hidden");
-  window.scrollTo(0, 0);
-}
-
 function showEnvelope() {
-  loader.classList.add("hidden");
   envelopeSection.classList.remove("hidden");
   invite.classList.add("hidden");
   window.scrollTo(0, 0);
 }
 
 function showInvite() {
-  loader.classList.add("hidden");
   envelopeSection.classList.add("hidden");
   invite.classList.remove("hidden");
   window.scrollTo(0, 0);
 }
 
-openIntro.addEventListener("click", () => {
-  showEnvelope();
-
-  setTimeout(() => {
-    envelope.classList.add("open");
-  }, 500);
+sealButton.addEventListener("click", () => {
+  envelope.classList.add("open");
 
   setTimeout(() => {
     showInvite();
     envelope.classList.remove("open");
-  }, 1900);
+  }, 1400);
 });
 
 const targetDate = new Date("December 18, 2026 16:00:00").getTime();
@@ -75,4 +61,4 @@ rsvpForm.addEventListener("submit", (e) => {
   rsvpMessage.textContent = "Your RSVP was recorded.";
 });
 
-showLoader();
+showEnvelope();
