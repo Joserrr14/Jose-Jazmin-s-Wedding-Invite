@@ -81,7 +81,8 @@ img {
   height: min(60vw, 210px);
   min-height: 190px;
   margin: 0 auto 20px;
-  background: #efe7dc;
+  background: linear-gradient(180deg, #f7f2ea 0%, #efe5d8 100%);
+  border: 2px solid rgba(122, 92, 70, 0.18);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
@@ -93,7 +94,7 @@ img {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #e4d7c7;
+  background: #e8dccd;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top;
   transition: transform 0.8s ease;
@@ -111,16 +112,17 @@ img {
   border-radius: 12px;
   text-align: center;
   transition: transform 0.8s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .letter h1 {
-  font-size: clamp(1.25rem, 4vw, 2rem);
   margin: 0 0 8px;
+  color: var(--emerald);
 }
 
 .letter p {
   margin: 6px 0;
-  font-size: clamp(0.9rem, 2.8vw, 1rem);
+  color: var(--brown);
 }
 
 .envelope.open .flap {
