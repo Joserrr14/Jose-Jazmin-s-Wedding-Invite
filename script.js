@@ -24,7 +24,7 @@ sealButton.addEventListener("click", () => {
   setTimeout(() => {
     showInvite();
     envelope.classList.remove("open");
-  }, 1400);
+  }, 1200);
 });
 
 const targetDate = new Date("December 18, 2026 16:00:00").getTime();
