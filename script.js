@@ -5,6 +5,8 @@ const openIntro = document.getElementById("openIntro");
 const openInvite = document.getElementById("openInvite");
 const envelope = document.getElementById("envelope");
 const countdown = document.getElementById("countdown");
+const rsvpForm = document.getElementById("rsvpForm");
+const rsvpMessage = document.getElementById("rsvpMessage");
 
 openIntro.addEventListener("click", () => {
   loader.classList.add("hidden");
@@ -47,3 +49,8 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+rsvpForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  rsvpMessage.textContent = "Your RSVP was recorded.";
+});
