@@ -35,31 +35,51 @@ body {
 
 /* ENVELOPE SCREEN */
 .screen {
- .screen {
   width: 100%;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: var(--cream);
 }
 
-.envelope {
+.scene {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: var(--cream);
-  background-image: url("envelope.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
   overflow: hidden;
+  background: var(--cream);
 }
 
-/* clickable wax seal */
+.scene-bg {
+  position: absolute;
+  inset: -4%;
+  background:
+    linear-gradient(rgba(247, 243, 237, 0.18), rgba(247, 243, 237, 0.18)),
+    url("envelope.png") center center / cover no-repeat;
+  filter: blur(22px) saturate(0.95);
+  transform: scale(1.08);
+}
+
+.envelope-figure {
+  position: relative;
+  z-index: 2;
+  width: min(100vw, calc(100vh * 0.5714));
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.envelope-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.12));
+}
+
+/* clickable seal aligned to your image */
 .seal {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 49%;
   transform: translate(-50%, -50%);
   width: 92px;
   height: 92px;
@@ -84,7 +104,6 @@ body {
 
 .seal:hover {
   transform: translate(-50%, -50%) scale(1.04);
-  filter: brightness(1.04);
 }
 
 .seal:active {
@@ -97,9 +116,9 @@ body {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 }
 
-/* fake melt / crack effect */
+/* wax melt */
 .seal.melting {
-  animation: sealPulse 0.28s ease 2, sealMelt 0.85s ease forwards;
+  animation: sealPulse 0.28s ease 2, sealMelt 0.9s ease forwards;
 }
 
 @keyframes sealPulse {
@@ -115,52 +134,51 @@ body {
   }
   35% {
     opacity: 1;
-    filter: brightness(1.25);
+    filter: brightness(1.2);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -34%) scale(0.72);
-    filter: blur(3px);
+    transform: translate(-50%, -32%) scale(0.72);
+    filter: blur(4px);
   }
 }
 
-/* envelope flap overlay */
-.envelope-flap {
+/* fake opening flap overlay */
+.flap-overlay {
   position: absolute;
-  left: 9%;
-  top: 29%;
-  width: 82%;
-  height: 28%;
-  background: linear-gradient(180deg, rgba(246, 233, 214, 0.95), rgba(228, 205, 175, 0.94));
+  left: 10%;
+  top: 27.2%;
+  width: 80%;
+  height: 26%;
+  background: linear-gradient(180deg, rgba(246, 233, 214, 0.96), rgba(228, 205, 175, 0.95));
   clip-path: polygon(0 0, 50% 100%, 100% 0);
   transform-origin: top center;
-  z-index: 5;
   opacity: 0;
+  z-index: 5;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
 }
 
-.envelope.opening .envelope-flap {
-  opacity: 1;
+.envelope-figure.opening .flap-overlay {
   animation: flapOpen 1.15s ease forwards;
 }
 
 @keyframes flapOpen {
   0% {
+    opacity: 0.96;
     transform: rotateX(0deg);
-    opacity: 1;
   }
   100% {
+    opacity: 0.65;
     transform: rotateX(175deg) translateY(-10px);
-    opacity: 0.7;
   }
 }
 
-/* invitation card that slides out */
+/* preview card rising out */
 .preview-card {
   position: absolute;
   left: 50%;
-  top: 54%;
-  transform: translate(-50%, 12px);
+  top: 55%;
+  transform: translate(-50%, 35px);
   width: min(72vw, 420px);
   background: rgba(255, 255, 255, 0.97);
   border-radius: 20px;
@@ -183,16 +201,16 @@ body {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
 }
 
-.envelope.opening .preview-card {
+.envelope-figure.opening .preview-card {
   animation: cardRise 1.3s ease forwards;
 }
 
 @keyframes cardRise {
   0% {
     opacity: 0;
-    transform: translate(-50%, 26px);
+    transform: translate(-50%, 35px);
   }
-  25% {
+  20% {
     opacity: 1;
   }
   100% {
@@ -376,7 +394,7 @@ summary {
   .seal {
     width: 76px;
     height: 76px;
-    top: 48.8%;
+    top: 49%;
   }
 
   .preview-card {
