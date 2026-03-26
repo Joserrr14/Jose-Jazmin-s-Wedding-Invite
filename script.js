@@ -1,30 +1,66 @@
 const envelopeSection = document.getElementById("envelopeSection");
 const invite = document.getElementById("invite");
 const sealButton = document.getElementById("sealButton");
-const envelope = document.getElementById("envelope");
+const envelopeFigure = document.getElementById("envelopeFigure");
+const petals = document.getElementById("petals");
 const countdown = document.getElementById("countdown");
 const rsvpForm = document.getElementById("rsvpForm");
 const rsvpMessage = document.getElementById("rsvpMessage");
 
-function showEnvelope() {
-  envelopeSection.classList.remove("hidden");
-  invite.classList.add("hidden");
-  window.scrollTo(0, 0);
-}
+let isOpening = false;
 
 function showInvite() {
   envelopeSection.classList.add("hidden");
   invite.classList.remove("hidden");
+  invite.classList.add("fade-in");
   window.scrollTo(0, 0);
 }
 
+function createPetal() {
+  const petal = document.createElement("span");
+  petal.className = "petal";
+
+  const left = Math.random() * 100;
+  const duration = 2.6 + Math.random() * 1.6;
+  const delay = Math.random() * 0.8;
+  const size = 12 + Math.random() * 16;
+
+  petal.style.left = `${left}%`;
+  petal.style.width = `${size}px`;
+  petal.style.height = `${size * 1.35}px`;
+  petal.style.animationDuration = `${duration}s`;
+  petal.style.animationDelay = `${delay}s`;
+
+  petals.appendChild(petal);
+
+  setTimeout(() => {
+    petal.remove();
+  }, (duration + delay + 0.4) * 1000);
+}
+
+function startPetals() {
+  for (let i = 0; i < 16; i++) {
+    createPetal();
+  }
+}
+
 sealButton.addEventListener("click", () => {
-  envelope.classList.add("open");
+  if (isOpening) return;
+  isOpening = true;
+
+  sealButton.classList.add("melting");
+
+  setTimeout(() => {
+    envelopeFigure.classList.add("opening");
+  }, 180);
+
+  setTimeout(() => {
+    startPetals();
+  }, 1200);
 
   setTimeout(() => {
     showInvite();
-    envelope.classList.remove("open");
-  }, 1200);
+  }, 2300);
 });
 
 const targetDate = new Date("December 18, 2026 16:00:00").getTime();
@@ -60,5 +96,3 @@ rsvpForm.addEventListener("submit", (e) => {
   e.preventDefault();
   rsvpMessage.textContent = "Your RSVP was recorded.";
 });
-
-showEnvelope();
