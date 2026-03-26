@@ -74,14 +74,16 @@
         Lynwood, CA 90262
       </p>
 
-      <a
-        class="btn small-btn"
-        href="https://www.google.com/maps/search/?api=1&query=11011+Louise+Ave+Lynwood+CA+90262"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open Map
-      </a>
+      <div class="location-actions">
+        <a
+          class="btn small-btn"
+          href="https://www.google.com/maps/search/?api=1&query=11011+Louise+Ave+Lynwood+CA+90262"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Map
+        </a>
+      </div>
 
       <div class="map-embed">
         <iframe
@@ -127,7 +129,10 @@
     </section>
   </main>
 
-  <!-- MUSIC -->
+  <button id="musicToggle" class="music-toggle paused" type="button" aria-label="Play music">
+    ♫
+  </button>
+
   <audio id="inviteMusic" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
