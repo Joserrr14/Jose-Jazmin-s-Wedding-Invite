@@ -6,6 +6,7 @@ const cascadeLayer = document.getElementById("cascadeLayer");
 const whiteFlash = document.getElementById("whiteFlash");
 const fallingFlowers = document.getElementById("fallingFlowers");
 const countdown = document.getElementById("countdown");
+const inviteMusic = document.getElementById("inviteMusic");
 
 let isOpening = false;
 
@@ -13,6 +14,15 @@ function revealInvite() {
   invite.classList.remove("hidden");
   invite.classList.add("fade-in-slow");
   window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function playMusic() {
+  if (!inviteMusic) return;
+
+  inviteMusic.volume = 0.45;
+  inviteMusic.play().catch(() => {
+    console.log("Music autoplay was blocked until user interaction.");
+  });
 }
 
 function createFlowerPiece() {
@@ -82,6 +92,7 @@ sealButton.addEventListener("click", () => {
   if (isOpening) return;
   isOpening = true;
 
+  playMusic();
   envelopeFigure.classList.add("opening");
 
   setTimeout(() => {
