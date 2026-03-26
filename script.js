@@ -24,23 +24,23 @@ sealButton.addEventListener("click", () => {
 
   setTimeout(() => {
     cascadeLayer.classList.add("active");
-  }, 950);
+  }, 1400);
 
   setTimeout(() => {
     whiteFlash.classList.add("active");
-  }, 2500);
+  }, 4200);
 
   setTimeout(() => {
     revealInvite();
-  }, 2800);
+  }, 4550);
 
   setTimeout(() => {
     cascadeLayer.classList.add("fade-out");
-  }, 3150);
+  }, 4900);
 
   setTimeout(() => {
     envelopeSection.classList.add("hidden");
-  }, 4600);
+  }, 6600);
 });
 
 const targetDate = new Date("December 18, 2026 16:00:00").getTime();
