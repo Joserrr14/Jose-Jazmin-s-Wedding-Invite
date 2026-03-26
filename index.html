@@ -9,47 +9,43 @@
 <body>
   <section id="envelopeSection" class="screen">
     <div class="scene">
+      <!-- blurred full-screen background -->
       <div class="scene-bg"></div>
 
+      <!-- FULLSCREEN ENVELOPE -->
       <div id="envelopeFigure" class="envelope-figure">
         <!-- DESKTOP -->
-        <img src="Envelope-desktop.png" alt="Envelope body desktop" class="env-layer desktop-layer envelope-body" />
-        <img src="inner-desktop.png" alt="Envelope inside desktop" class="env-layer desktop-layer inner-layer" />
-        <img src="flap-desktop.png" alt="Envelope flap desktop" class="env-layer desktop-layer flap-layer" />
-        <img src="seal-desktop.png" alt="Wax seal desktop" class="env-layer desktop-layer seal-image" />
+        <img src="Envelope-desktop.png" alt="" class="env-layer desktop-layer envelope-body" />
+        <img src="inner-desktop.png" alt="" class="env-layer desktop-layer inner-layer" />
+        <img src="flap-desktop.png" alt="" class="env-layer desktop-layer flap-layer" />
+        <img src="seal-desktop.png" alt="" class="env-layer desktop-layer seal-image" />
 
         <!-- MOBILE -->
-        <img src="envelope-mobile_full.png" alt="Envelope body mobile" class="env-layer mobile-layer envelope-body" />
-        <img src="inner-mobile_full.png" alt="Envelope inside mobile" class="env-layer mobile-layer inner-layer" />
-        <img src="flap-mobile_full.png" alt="Envelope flap mobile" class="env-layer mobile-layer flap-layer" />
-        <img src="seal-mobile_full.png" alt="Wax seal mobile" class="env-layer mobile-layer seal-image" />
+        <img src="envelope-mobile_full.png" alt="" class="env-layer mobile-layer envelope-body" />
+        <img src="inner-mobile_full.png" alt="" class="env-layer mobile-layer inner-layer" />
+        <img src="flap-mobile_full.png" alt="" class="env-layer mobile-layer flap-layer" />
+        <img src="seal-mobile_full.png" alt="" class="env-layer mobile-layer seal-image" />
 
         <button id="sealButton" class="seal-button" type="button" aria-label="Open invitation"></button>
 
         <div id="previewCard" class="preview-card">
-          <h2>Jose &amp; Jazmin</h2>
-          <p>Save the Date</p>
-          <p>December 18, 2026</p>
-          <p>Lynwood, California</p>
+          <h2>Save the Date</h2>
+          <p>Tap to open</p>
         </div>
       </div>
 
-      <!-- FULL SCREEN FLORAL TRANSITION -->
-      <div id="transitionLayer" class="transition-layer" aria-hidden="true">
-        <div class="transition-wash"></div>
-        <div id="floatingGarden" class="floating-garden"></div>
+      <!-- FULLSCREEN CASCADE TRANSITION -->
+      <div id="cascadeLayer" class="cascade-layer" aria-hidden="true">
+        <img src="a_photograph_features_a_cascade_of_delicate_flower.png" alt="" class="cascade-image" />
       </div>
+
+      <!-- SOFT WHITE FLASH -->
+      <div id="whiteFlash" class="white-flash" aria-hidden="true"></div>
     </div>
   </section>
 
-  <main id="invite" class="hidden">
-    <header class="hero">
-      <div class="overlay">
-        <h1>Jose &amp; Jazmin</h1>
-        <p>We’re getting married</p>
-        <p>December 18, 2026 · Lynwood, California</p>
-      </div>
-    </header>
+  <main id="invite" class="hidden invite-shell">
+    <header class="hero"></header>
 
     <section class="card">
       <h2>Countdown</h2>
