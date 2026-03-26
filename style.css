@@ -1,478 +1,110 @@
-:root {
-  --brown: #7a5c46;
-  --emerald: #2f5d50;
-  --cream: #f7f3ed;
-  --white: #ffffff;
-  --text: #2c2c2c;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jose & Jazmin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="envelopeSection" class="screen">
+    <div class="scene">
+      <div class="scene-bg"></div>
 
-* {
-  box-sizing: border-box;
-}
+      <div id="envelopeFigure" class="envelope-figure">
+        <!-- DESKTOP -->
+        <img src="Envelope-desktop.png" alt="" class="env-layer desktop-layer envelope-body" />
+        <img src="inner-desktop.png" alt="" class="env-layer desktop-layer inner-layer" />
+        <img src="flap-desktop.png" alt="" class="env-layer desktop-layer flap-layer" />
+        <img src="seal-desktop.png" alt="" class="env-layer desktop-layer seal-image" />
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-  scroll-behavior: smooth;
-}
+        <!-- MOBILE -->
+        <img src="envelope-mobile_full.png" alt="" class="env-layer mobile-layer envelope-body" />
+        <img src="inner-mobile_full.png" alt="" class="env-layer mobile-layer inner-layer" />
+        <img src="flap-mobile_full.png" alt="" class="env-layer mobile-layer flap-layer" />
+        <img src="seal-mobile_full.png" alt="" class="env-layer mobile-layer seal-image" />
 
-body {
-  font-family: Georgia, serif;
-  background: var(--cream);
-  color: var(--text);
-  overflow-x: hidden;
-}
+        <button id="sealButton" class="seal-button" type="button" aria-label="Open invitation"></button>
+      </div>
 
-.hidden {
-  display: none !important;
-}
+      <div id="cascadeLayer" class="cascade-layer" aria-hidden="true">
+        <img src="transition-cascade.png" alt="" class="cascade-image" />
+      </div>
 
-.screen {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-}
+      <div id="whiteFlash" class="white-flash" aria-hidden="true"></div>
+    </div>
+  </section>
 
-.scene {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow: hidden;
-  background: var(--cream);
-}
+  <main id="invite" class="hidden invite-shell">
+    <header class="hero">
+      <div class="hero-overlay">
+        <p class="eyebrow">Together with our families</p>
+        <h1>Jose &amp; Jazmin</h1>
+        <p class="hero-message">
+          With joyful hearts, we warmly invite you to celebrate our wedding and
+          share in this beautiful day with us.
+        </p>
+        <p class="hero-date">December 18, 2026</p>
+        <p class="hero-place">Lynwood, California</p>
+      </div>
+    </header>
 
-/* blurred full screen background */
-.scene-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(247, 243, 237, 0.08), rgba(247, 243, 237, 0.08)),
-    url("Envelope-desktop.png") center center / cover no-repeat;
-  filter: blur(18px) saturate(0.95);
-  transform: scale(1.08);
-  opacity: 0.92;
-}
+    <section class="card">
+      <h2>Countdown</h2>
+      <div id="countdown" class="countdown"></div>
+    </section>
 
-/* full screen envelope area */
-.envelope-figure {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  perspective: 1800px;
-}
+    <section class="card">
+      <h2>Location</h2>
+      <p>Lynwood, California</p>
+      <a
+        class="btn small-btn"
+        href="https://maps.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open Map
+      </a>
+    </section>
 
-.env-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  user-select: none;
-  pointer-events: none;
-  -webkit-user-drag: none;
-}
+    <section class="card">
+      <h2>Schedule</h2>
+      <ul>
+        <li>4:00 PM – Ceremony</li>
+        <li>5:00 PM – Cocktail Hour</li>
+        <li>6:00 PM – Dinner</li>
+        <li>8:00 PM – Dancing</li>
+      </ul>
+    </section>
 
-/* desktop on by default */
-.desktop-layer {
-  display: block;
-}
+    <section class="card">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Can I bring a guest?</summary>
+        <p>Please check your invitation details.</p>
+      </details>
+      <details>
+        <summary>What should I wear?</summary>
+        <p>Elegant attire in earthy tones.</p>
+      </details>
+    </section>
 
-.mobile-layer {
-  display: none;
-}
+    <section class="card">
+      <h2>RSVP</h2>
+      <form id="rsvpForm">
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Email" />
+        <select required>
+          <option value="">Will you attend?</option>
+          <option>Yes, I will attend</option>
+          <option>Sorry, I can’t attend</option>
+        </select>
+        <button class="btn small-btn" type="submit">Send RSVP</button>
+      </form>
+      <p id="rsvpMessage"></p>
+    </section>
+  </main>
 
-.inner-layer {
-  z-index: 2;
-  opacity: 0.88;
-}
-
-.envelope-body {
-  z-index: 3;
-}
-
-.flap-layer {
-  z-index: 5;
-  transform-origin: 50% 28%;
-  transform: perspective(1800px) rotateX(0deg) translateY(0) scale(1.02);
-  transition: transform 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-.seal-image {
-  z-index: 6;
-  transition:
-    opacity 0.55s ease,
-    transform 0.55s ease,
-    filter 0.55s ease;
-  transform-origin: center center;
-}
-
-/* clickable seal area */
-.seal-button {
-  position: absolute;
-  left: 50%;
-  top: 51.5%;
-  transform: translate(-50%, -50%);
-  width: 8vw;
-  height: 8vw;
-  min-width: 68px;
-  min-height: 68px;
-  max-width: 110px;
-  max-height: 110px;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* small preview only */
-.preview-card {
-  position: absolute;
-  left: 50%;
-  top: 58%;
-  transform: translate(-50%, 34px);
-  width: min(74vw, 420px);
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 20px;
-  padding: 24px 18px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
-  z-index: 4;
-  opacity: 0;
-}
-
-.preview-card h2 {
-  margin: 0 0 10px;
-  color: var(--emerald);
-  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-}
-
-.preview-card p {
-  margin: 0;
-  color: var(--brown);
-  font-size: 1rem;
-}
-
-/* shadow under flap */
-.envelope-figure::before {
-  content: "";
-  position: absolute;
-  left: 24%;
-  right: 24%;
-  top: 33%;
-  height: 12%;
-  background: rgba(0, 0, 0, 0.20);
-  filter: blur(20px);
-  opacity: 0;
-  z-index: 1;
-  transition: opacity 0.5s ease;
-}
-
-/* opening state */
-.envelope-figure.opening::before {
-  opacity: 1;
-}
-
-.envelope-figure.opening .flap-layer {
-  transform: perspective(1800px) rotateX(168deg) translateY(-1.2%) scale(1.02);
-}
-
-.envelope-figure.opening .seal-image {
-  opacity: 0;
-  transform: scale(0.72) translateY(-20px);
-  filter: blur(4px);
-}
-
-.envelope-figure.opening .preview-card {
-  animation: cardRise 1.35s ease forwards;
-}
-
-@keyframes cardRise {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 34px);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -150px);
-  }
-}
-
-/* cascade */
-.cascade-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  opacity: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.cascade-layer.active {
-  animation: cascadeIn 2.4s ease forwards;
-}
-
-.cascade-layer.fade-out {
-  animation: cascadeOut 1.5s ease forwards;
-}
-
-.cascade-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.04);
-  animation: cascadeDrift 4s ease-in-out forwards;
-}
-
-@keyframes cascadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes cascadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes cascadeDrift {
-  0% {
-    transform: scale(1.06) translateY(0);
-  }
-  100% {
-    transform: scale(1.12) translateY(-1.5%);
-  }
-}
-
-/* soft white flash */
-.white-flash {
-  position: absolute;
-  inset: 0;
-  z-index: 25;
-  background: #ffffff;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.white-flash.active {
-  animation: softFlash 1.2s ease forwards;
-}
-
-@keyframes softFlash {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.72;
-  }
-  55% {
-    opacity: 0.42;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* invite */
-.invite-shell {
-  background: linear-gradient(180deg, #f9f4ee 0%, #f5efe8 100%);
-}
-
-.hero {
-  min-height: 100vh;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.34)),
-    url("transition-cascade.png") center center / cover no-repeat;
-}
-
-.card {
-  width: min(92%, 700px);
-  margin: 22px auto;
-  background: var(--white);
-  border-radius: 20px;
-  padding: 24px 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.card h2 {
-  margin-top: 0;
-  text-align: center;
-  color: var(--emerald);
-}
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.countdown div {
-  min-width: 82px;
-  text-align: center;
-  background: var(--cream);
-  border-radius: 14px;
-  padding: 14px 12px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--emerald);
-  color: var(--white);
-  border: none;
-  border-radius: 999px;
-  padding: 14px 24px;
-  min-height: 52px;
-  min-width: 240px;
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.small-btn {
-  min-width: 180px;
-}
-
-input,
-select,
-textarea,
-button {
-  width: 100%;
-  max-width: 100%;
-  font-size: 16px;
-}
-
-input,
-select,
-textarea {
-  margin: 8px 0 14px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-family: inherit;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-details {
-  margin-bottom: 12px;
-}
-
-summary {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#rsvpMessage {
-  text-align: center;
-  margin-top: 10px;
-  color: var(--brown);
-}
-
-.fade-in-slow {
-  animation: inviteFadeSlow 2.8s ease forwards;
-}
-
-@keyframes inviteFadeSlow {
-  0% {
-    opacity: 0;
-    transform: translateY(22px);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  .scene-bg {
-    background:
-      linear-gradient(rgba(247, 243, 237, 0.08), rgba(247, 243, 237, 0.08)),
-      url("envelope-mobile_full.png") center center / cover no-repeat;
-  }
-
-  .desktop-layer {
-    display: none;
-  }
-
-  .mobile-layer {
-    display: block;
-  }
-
-  .seal-button {
-    top: 51.4%;
-    width: 18vw;
-    height: 18vw;
-    min-width: 68px;
-    min-height: 68px;
-    max-width: 96px;
-    max-height: 96px;
-  }
-
-  .preview-card {
-    width: 78vw;
-    top: 60%;
-    padding: 20px 16px;
-  }
-
-  .envelope-figure.opening .preview-card {
-    animation: cardRiseMobile 1.35s ease forwards;
-  }
-}
-
-@keyframes cardRiseMobile {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 34px);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -115px);
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    width: 94%;
-    padding: 18px 14px;
-    border-radius: 16px;
-  }
-
-  .countdown div {
-    min-width: 70px;
-    padding: 12px 10px;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
