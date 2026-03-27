@@ -79,32 +79,24 @@ body {
 
 .desktop-layer {
   display: block;
+  object-fit: cover;
+  transform: scale(1.01);
 }
 
 .mobile-layer {
   display: none;
 }
 
-/* ---------------- DESKTOP ---------------- */
-
-.desktop-envelope-body,
-.desktop-inner-layer,
-.desktop-flap-layer,
-.desktop-seal {
-  object-fit: cover;
-  transform: scale(1.01);
-}
-
-.desktop-inner-layer {
+.inner-layer {
   z-index: 2;
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
-.desktop-envelope-body {
+.envelope-body {
   z-index: 3;
 }
 
-.desktop-flap-layer {
+.flap-layer {
   z-index: 5;
   transform: translateY(0) scale(1.01);
   transition: transform 1.5s cubic-bezier(0.2, 0.85, 0.2, 1);
@@ -140,7 +132,7 @@ body {
   opacity: 1;
 }
 
-.envelope-figure.opening .desktop-flap-layer {
+.envelope-figure.opening .desktop-layer.flap-layer {
   transform: translateY(-1.2%) scale(1.01);
 }
 
@@ -149,8 +141,6 @@ body {
   transform: scale(0.7) translateY(-16px);
   filter: blur(5px);
 }
-
-/* ---------------- BUTTON ---------------- */
 
 .seal-button {
   position: absolute;
@@ -171,8 +161,6 @@ body {
   pointer-events: auto;
   touch-action: manipulation;
 }
-
-/* ---------------- CASCADE ---------------- */
 
 .cascade-layer {
   position: absolute;
@@ -303,8 +291,6 @@ body {
     filter: blur(10px);
   }
 }
-
-/* ---------------- INVITE ---------------- */
 
 .invite-shell {
   position: relative;
@@ -489,8 +475,6 @@ summary {
   font-weight: bold;
 }
 
-/* ---------------- MUSIC BUTTON ---------------- */
-
 .music-toggle {
   position: fixed;
   right: 16px;
@@ -531,15 +515,20 @@ summary {
   }
 }
 
-/* ---------------- MOBILE ---------------- */
-
 @media (max-width: 768px) {
+  .scene,
+  .envelope-figure {
+    width: 100vw;
+    height: 100dvh;
+  }
+
   .scene-bg {
     background:
-      linear-gradient(rgba(247, 243, 237, 0.08), rgba(247, 243, 237, 0.08)),
-      url("envelope-mobile_full.png") center center / contain no-repeat;
-    filter: blur(10px) saturate(0.95);
-    transform: scale(1);
+      linear-gradient(rgba(247, 243, 237, 0.04), rgba(247, 243, 237, 0.04)),
+      url("envelope-mobile_full.png") center center / cover no-repeat;
+    filter: blur(10px) saturate(0.96);
+    transform: scale(1.02);
+    opacity: 0.95;
   }
 
   .desktop-layer {
@@ -550,76 +539,61 @@ summary {
     display: block !important;
   }
 
-  .mobile-envelope-body,
-  .mobile-inner-layer,
-  .mobile-flap-layer,
-  .mobile-seal {
+  .mobile-full-composition {
     position: absolute;
     inset: 0;
     width: 100vw;
     height: 100dvh;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
-  }
-
-  /* same base transform so they all line up together */
-  .mobile-envelope-body,
-  .mobile-inner-layer,
-  .mobile-flap-layer,
-  .mobile-seal {
-    transform: translateY(-1vh) scale(0.98);
-  }
-
-  .mobile-envelope-body {
     z-index: 3;
-  }
-
-  .mobile-inner-layer {
-    z-index: 2;
-    opacity: 0.98;
-    transition: transform 1.2s cubic-bezier(0.2, 0.85, 0.2, 1), opacity 0.8s ease;
-  }
-
-  .mobile-flap-layer {
-    z-index: 5;
-    transition: transform 1.2s cubic-bezier(0.2, 0.85, 0.2, 1);
+    transform: scale(1);
+    transition:
+      transform 1.15s cubic-bezier(0.2, 0.85, 0.2, 1),
+      opacity 0.8s ease;
   }
 
   .mobile-seal {
+    position: absolute;
+    left: 50%;
+    top: 50.8%;
+    width: 15vw;
+    max-width: 84px;
+    min-width: 58px;
+    height: auto;
+    transform: translate(-50%, -50%);
     z-index: 6;
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease,
+      filter 0.8s ease;
   }
 
-  .envelope-figure.opening .mobile-inner-layer {
-    transform: translateY(-2.6vh) scale(0.98);
-    opacity: 1;
-  }
-
-  .envelope-figure.opening .mobile-flap-layer {
-    transform: translateY(-2vh) scale(0.98);
+  .envelope-figure.opening .mobile-full-composition {
+    transform: scale(1.015) translateY(-0.5%);
   }
 
   .envelope-figure.opening .mobile-seal {
     opacity: 0;
-    transform: translateY(-2vh) scale(0.72);
+    transform: translate(-50%, -54%) scale(0.72);
     filter: blur(5px);
   }
 
   .seal-button {
     left: 50%;
-    top: 50.9%;
-    width: 20vw;
-    height: 20vw;
-    min-width: 66px;
-    min-height: 66px;
-    max-width: 96px;
-    max-height: 96px;
+    top: 50.8%;
+    transform: translate(-50%, -50%);
+    width: 18vw;
+    height: 18vw;
+    min-width: 64px;
+    min-height: 64px;
+    max-width: 92px;
+    max-height: 92px;
+    z-index: 70;
   }
 
   .envelope-figure::before {
-    left: 19%;
-    right: 19%;
-    top: 40.5%;
-    height: 7%;
+    display: none;
   }
 }
 
