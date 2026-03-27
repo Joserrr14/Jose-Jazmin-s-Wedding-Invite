@@ -64,8 +64,12 @@ function toggleMusic() {
 
   if (inviteMusic.paused) {
     inviteMusic.play()
-      .then(() => updateMusicButton())
-      .catch(() => updateMusicButton());
+      .then(() => {
+        updateMusicButton();
+      })
+      .catch(() => {
+        updateMusicButton();
+      });
   } else {
     inviteMusic.pause();
     updateMusicButton();
