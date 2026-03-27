@@ -8,6 +8,7 @@ const fallingFlowers = document.getElementById("fallingFlowers");
 const countdown = document.getElementById("countdown");
 const inviteMusic = document.getElementById("inviteMusic");
 const musicToggle = document.getElementById("musicToggle");
+const mobileEnvelopeBg = document.getElementById("mobileEnvelopeBg");
 
 let isOpening = false;
 let musicStarted = false;
@@ -64,12 +65,8 @@ function toggleMusic() {
 
   if (inviteMusic.paused) {
     inviteMusic.play()
-      .then(() => {
-        updateMusicButton();
-      })
-      .catch(() => {
-        updateMusicButton();
-      });
+      .then(() => updateMusicButton())
+      .catch(() => updateMusicButton());
   } else {
     inviteMusic.pause();
     updateMusicButton();
@@ -146,6 +143,10 @@ sealButton.addEventListener("click", () => {
   playMusic();
   envelopeFigure.classList.add("opening");
 
+  if (mobileEnvelopeBg) {
+    mobileEnvelopeBg.classList.add("opening");
+  }
+
   setTimeout(() => {
     cascadeLayer.classList.add("active");
     burstFlowers(window.innerWidth < 768 ? 140 : 120);
@@ -161,6 +162,10 @@ sealButton.addEventListener("click", () => {
 
   setTimeout(() => {
     envelopeFigure.classList.add("fade-away");
+    if (mobileEnvelopeBg) {
+      mobileEnvelopeBg.style.opacity = "0";
+      mobileEnvelopeBg.style.filter = "blur(10px)";
+    }
   }, 3150);
 
   setTimeout(() => {
