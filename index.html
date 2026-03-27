@@ -2,26 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
   <title>Jose & Jazmin</title>
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=20" />
 </head>
 <body>
   <section id="envelopeSection" class="screen">
-    <div id="mobileEnvelopeBg" class="mobile-envelope-bg"></div>
-
     <div class="scene">
       <div class="scene-bg"></div>
 
       <div id="envelopeFigure" class="envelope-figure">
-        <!-- DESKTOP ONLY -->
+        <!-- DESKTOP -->
         <img src="Envelope-desktop.png" alt="" class="env-layer desktop-layer envelope-body" />
         <img src="inner-desktop.png" alt="" class="env-layer desktop-layer inner-layer" />
         <img src="flap-desktop.png" alt="" class="env-layer desktop-layer flap-layer" />
         <img src="seal-desktop.png" alt="" class="env-layer desktop-layer seal-image desktop-seal" />
 
-        <!-- MOBILE ONLY -->
-        <img src="seal-mobile_full.png" alt="" class="mobile-layer seal-image mobile-seal" />
+        <!-- MOBILE FULL COMPOSITION -->
+        <img
+          src="envelope-mobile_full.png"
+          alt=""
+          class="mobile-full-image"
+          fetchpriority="high"
+        />
+        <img
+          src="seal-mobile_full.png"
+          alt=""
+          class="mobile-seal-image"
+        />
 
         <button
           id="sealButton"
@@ -138,6 +149,6 @@
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
